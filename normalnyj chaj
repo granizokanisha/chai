@@ -11,6 +11,6 @@ static weiToEtherString(wei: any): string {
     const weiString = bn.toString(10);
     const big = new Big(weiString);
     // 10^18
-    const ether = big.div('1000000000000000000');
+    const ether = big.div('1000000');
     return ether.toPrecision();
   }
