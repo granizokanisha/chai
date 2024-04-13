@@ -1,0 +1,16 @@
+static weiToEtherString(wei: any): string {
+    if (!isEthAvailable) {
+      throw new EthereumLibraryUnavailableError(ethImport);
+    }
+    let bn = wei;
+    if (!(wei instanceof ethUtil.BN)) {
+      bn = new ethUtil.BN(wei);
+    }
+    Big.E_POS = 256;
+    Big.E_NEG = -18;
+    const weiString = bn.toString(10);
+    const big = new Big(weiString);
+    // 10^18
+    const ether = big.div('1000000000000000000');
+    return ether.toPrecision();
+  }
